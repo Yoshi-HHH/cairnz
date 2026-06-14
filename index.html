@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cairnz</title>
+<style>
+  :root {
+    --ink:#1c2333; --slate:#3d4f6e; --mist:#8a9bb5; --snow:#f4f6fa;
+    --white:#fff; --peak:#2c5f8a; --ridge:#4a8ab5; --danger:#c0392b;
+    --radius:12px; --radius-sm:7px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body {
+    font-family:-apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+    background:var(--snow); color:var(--ink); font-size:15px; line-height:1.6;
+    max-width:480px; margin:0 auto; padding-bottom:40px;
+  }
+  /* HERO */
+  .hero {
+    background:linear-gradient(175deg, #1c2b42 0%, #243650 55%, #2c5f8a 100%);
+    padding:36px 20px 28px; color:#fff; position:relative; overflow:hidden;
+  }
+  .hero::before {
+    content:""; position:absolute; bottom:-1px; left:0; right:0; height:28px;
+    background:var(--snow); clip-path:ellipse(55% 100% at 50% 100%);
+  }
+  .brand {
+    font-size:11px; letter-spacing:3px; text-transform:uppercase;
+    color:#8bbcd6; margin-bottom:10px; font-weight:700;
+  }
+  .hero-title { font-size:24px; font-weight:700; line-height:1.25; margin-bottom:6px; }
+  .hero-sub { font-size:13px; color:#a8c4d8; margin-bottom:20px; }
+  .hero-chips { display:flex; flex-wrap:wrap; gap:8px; }
+  .chip {
+    background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.2);
+    border-radius:20px; padding:4px 12px; font-size:12px; color:#d6e8f4;
+  }
+  .lang-toggle {
+    position:absolute; top:18px; right:16px; display:flex;
+    background:rgba(255,255,255,0.12); border-radius:20px; overflow:hidden;
+    border:1px solid rgba(255,255,255,0.2);
+  }
+  .lang-btn {
+    padding:5px 12px; font-size:12px; font-weight:600;
+    color:rgba(255,255,255,0.6); cursor:pointer; border:none; background:none;
+  }
+  .lang-btn.active { background:rgba(255,255,255,0.25); color:#fff; border-radius:18px; }
+  /* ALERT */
+  .alert {
+    margin:16px 16px 0; background:#fdecea; border-left:4px solid var(--danger);
+    border-radius:var(--radius-sm); padding:12px 14px; font-size:13px;
+    color:#7b1a13; line-height:1.55;
+  }
+  /* SECTION */
+  .section { margin:20px 16px 0; }
+  .section-label {
+    font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+    color:var(--mist); margin-bottom:10px; padding-left:2px;
+  }
+  /* NAV */
+  .nav {
+    display:flex; background:var(--white); border-bottom:1px solid #dce3ed;
+    position:sticky; top:0; z-index:100; box-shadow:0 2px 8px rgba(0,0,0,0.06);
+  }
+  .nav-btn {
+    flex:1; padding:12px 4px; font-size:11px; font-weight:600; color:var(--mist);
+    text-align:center; cursor:pointer; border-bottom:2px solid transparent;
+    background:none; border-top:none; border-left:none; border-right:none;
+  }
+  .nav-btn .nav-icon { display:block; font-size:16px; margin-bottom:2px; }
+  .nav-btn.active { color:var(--peak); border-bottom-color:var(--peak); }
+  .view { display:none; } .view.active { display:block; }
+  /* PLAN TABS */
+  .plan-tabs { display:flex; gap:8px; margin:20px 16px 0; }
+  .plan-tab {
+    flex:1; padding:10px 6px; border-radius:var(--radius-sm); font-size:13px;
+    font-weight:700; text-align:center; cursor:pointer; border:2px solid #dce3ed;
+    background:var(--white); color:var(--mist);
+  }
+  .plan-tab .tab-label { display:block; font-size:11px; font-weight:400; margin-top:1px; }
+  .plan-tab.active { color:#fff; }
+  .plan-content { display:none; } .plan-content.visible { display:block; }
+  /* LINK CARD */
+  .link-card {
+    display:flex; align-items:center; gap:10px; background:var(--white);
+    border:1px solid #dce3ed; border-radius:10px; padding:11px 14px;
+    text-decoration:none; box-shadow:0 1px 4px rgba(0,0,0,0.07); margin-bottom:10px;
+  }
+  .link-card .lc-icon { font-size:22px; }
+  .link-card .lc-title { display:block; font-size:13px; font-weight:700; color:var(--ink); }
+  .link-card .lc-sub { display:block; font-size:11px; color:var(--mist); }
+  .link-card .lc-arrow { margin-left:auto; color:var(--mist); font-size:14px; }
+  /* MAP */
+  .map-wrap { border-radius:10px; overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,0.12); position:relative; margin-bottom:10px; }
+  .map-wrap img { width:100%; display:block; }
+  .map-cap { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(transparent, rgba(0,0,0,0.55)); padding:8px 12px; }
+  .map-cap span { color:#fff; font-size:11px; font-weight:600; }
+  /* DAY CARD */
+  .day-list { display:flex; flex-direction:column; gap:10px; }
+  .day-card { background:var(--white); border-radius:var(--radius); overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,0.07); }
+  .day-header { display:flex; align-items:center; gap:12px; padding:12px 14px; border-bottom:1px solid var(--snow); }
+  .day-badge { min-width:42px; text-align:center; background:var(--peak); color:#fff; border-radius:8px; padding:4px 6px; font-size:11px; font-weight:700; line-height:1.3; }
+  .day-badge.common { background:#6b7fa0; }
+  .day-badge.travel { background:var(--mist); }
+  .day-badge.danger { background:var(--danger); }
+  .day-title { font-size:14px; font-weight:700; color:var(--ink); line-height:1.3; }
+  .day-sub { font-size:12px; color:var(--mist); margin-top:1px; }
+  .day-body { padding:10px 14px; display:flex; flex-direction:column; gap:7px; }
+  .info-row { display:flex; align-items:flex-start; gap:8px; font-size:13px; }
+  .info-row .ir-label { min-width:60px; font-size:11px; color:var(--mist); font-weight:600; padding-top:1px; }
+  .info-row .ir-value { color:var(--ink); flex:1; }
+  .info-row .ir-value.depart { color:var(--danger); font-weight:700; font-size:15px; }
+  .info-row .ir-value.danger { color:var(--danger); font-size:12px; }
+  /* DECISION */
+  .decision-card { background:var(--white); border-radius:var(--radius); overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,0.07); margin-bottom:16px; }
+  .decision-hub { color:#fff; padding:14px 16px; text-align:center; }
+  .decision-hub .dh-title { font-size:14px; font-weight:700; margin-bottom:4px; }
+  .decision-hub .dh-sub { font-size:12px; opacity:0.85; }
+  .decision-arrow { text-align:center; padding:8px; font-size:18px; color:var(--mist); }
+  .branch-row { background:var(--white); padding:14px 16px; display:flex; align-items:flex-start; gap:12px; border-top:1px solid var(--snow); }
+  .branch-dot { min-width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:#fff; flex-shrink:0; margin-top:1px; }
+  .branch-plan { font-size:13px; font-weight:700; margin-bottom:3px; }
+  .branch-cond { font-size:12px; color:var(--slate); line-height:1.5; }
+  /* NOTES */
+  .note-card { background:var(--white); border-radius:var(--radius); overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,0.07); margin-bottom:10px; }
+  .note-header { display:flex; align-items:center; gap:10px; padding:12px 14px; border-bottom:1px solid var(--snow); cursor:pointer; user-select:none; }
+  .note-tag { font-size:10px; font-weight:700; padding:3px 9px; border-radius:10px; color:#fff; white-space:nowrap; }
+  .note-title { font-size:13px; font-weight:700; flex:1; }
+  .note-chevron { font-size:12px; color:var(--mist); transition:transform 0.2s; }
+  .note-header.open .note-chevron { transform:rotate(180deg); }
+  .note-body { padding:12px 14px; display:none; }
+  .note-body.open { display:block; }
+  .note-body ul { padding-left:0; list-style:none; }
+  .note-body li { font-size:13px; color:var(--slate); line-height:1.6; padding:5px 0 5px 18px; border-bottom:1px solid var(--snow); position:relative; }
+  .note-body li:last-child { border-bottom:none; }
+  .note-body li::before { content:"▸"; position:absolute; left:0; color:var(--ridge); }
+  /* GEAR */
+  .gear-card { background:var(--white); border-radius:var(--radius); overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,0.07); margin-bottom:10px; }
+  .gear-header { padding:11px 14px; background:var(--ink); color:#fff; font-size:13px; font-weight:700; }
+  .gear-item { display:flex; align-items:flex-start; gap:10px; padding:10px 14px; border-bottom:1px solid var(--snow); }
+  .gear-item:last-child { border-bottom:none; }
+  .gear-name { font-size:13px; font-weight:600; flex:1; }
+  .gear-note { font-size:11px; color:var(--mist); margin-top:2px; line-height:1.4; }
+  .badge { font-size:10px; font-weight:700; padding:2px 7px; border-radius:8px; white-space:nowrap; flex-shrink:0; margin-top:2px; }
+  .badge-req { background:#fdecea; color:var(--danger); }
+  .badge-rec { background:#e8f2fa; color:var(--peak); }
+  /* EMERGENCY */
+  .emg-card { background:var(--white); border-radius:var(--radius); overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,0.07); margin-bottom:10px; }
+  .emg-header { padding:11px 14px; color:#fff; font-size:13px; font-weight:700; }
+  .emg-item { display:flex; gap:10px; align-items:flex-start; padding:10px 14px; border-bottom:1px solid var(--snow); font-size:13px; }
+  .emg-item:last-child { border-bottom:none; }
+  .emg-label { min-width:90px; color:var(--mist); font-size:12px; }
+  .emg-value { font-weight:600; }
+  .emg-value a { text-decoration:none; }
+  .emg-link { font-size:11px; color:var(--ridge); text-decoration:none; word-break:break-all; }
+  /* LOADING / ERROR */
+  .status { padding:40px 20px; text-align:center; color:var(--mist); font-size:14px; }
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="status">読み込み中…</div>
+</div>
+
+<script>
+let DATA = null;
+let lang = 'ja';
+let currentPlan = null;
+
+// ─── 多言語ヘルパー ───
+function t(obj, key) {
+  if (lang === 'en') {
+    const enKey = key + '_en';
+    if (obj[enKey] !== undefined && obj[enKey] !== '') return obj[enKey];
+  }
+  return obj[key] !== undefined ? obj[key] : '';
+}
+function tField(obj) { // {ja, en} 形式
+  return lang === 'en' && obj.en ? obj.en : obj.ja;
+}
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+// ─── データ読み込み ───
+async function loadData() {
+  try {
+    const res = await fetch('data.json');
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    DATA = await res.json();
+    currentPlan = DATA.plans[0].id;
+    render();
+  } catch (e) {
+    document.getElementById('app').innerHTML =
+      '<div class="status">データの読み込みに失敗しました。<br>data.json と同じ場所で開いてください。<br><small>' + esc(e.message) + '</small></div>';
+  }
+}
+
+// ─── レンダリング ───
+function render() {
+  const app = document.getElementById('app');
+  app.innerHTML =
+    renderHero() +
+    renderNav() +
+    renderPlanView() +
+    renderBranchView() +
+    renderNotesView() +
+    renderGearView() +
+    renderEmergencyView();
+  showView('plan');
+  showPlan(currentPlan);
+}
+
+function renderHero() {
+  const tr = DATA.trip;
+  return `
+  <div class="hero">
+    <div class="lang-toggle">
+      <button class="lang-btn ${lang==='ja'?'active':''}" onclick="setLang('ja')">日本語</button>
+      <button class="lang-btn ${lang==='en'?'active':''}" onclick="setLang('en')">EN</button>
+    </div>
+    <div class="brand">${esc(DATA.meta.appName || 'Cairnz')}</div>
+    <div class="hero-title">${esc(t(tr,'title'))}</div>
+    <div class="hero-sub">${esc(t(tr,'subtitle'))}</div>
+    <div class="hero-chips">
+      <span class="chip">${esc(tr.dates)}</span>
+      <span class="chip">${esc(tr.members)}${lang==='en'?' people':'名'}・${esc(t(tr,'style'))}</span>
+      <span class="chip">${lang==='en'?'Crux: ':'核心：'}${esc(t(tr,'crux'))}</span>
+    </div>
+  </div>`;
+}
+
+function renderNav() {
+  const labels = lang==='en'
+    ? ['Plans','Decision','Notes','Gear','Emergency']
+    : ['プラン','分岐判断','注意事項','装備','緊急'];
+  const ids = ['plan','branch','notes','gear','emg'];
+  const icons = ['🗺','⑃','⚠️','🎒','🆘'];
+  return '<nav class="nav">' + ids.map((id,i)=>`
+    <button class="nav-btn" id="nav-${id}" onclick="showView('${id}')">
+      <span class="nav-icon">${icons[i]}</span><span>${labels[i]}</span>
+    </button>`).join('') + '</nav>';
+}
+
+function renderPlanView() {
+  const tabs = DATA.plans.map(p => `
+    <div class="plan-tab" id="tab-${p.id}" onclick="showPlan('${p.id}')"
+         data-color="${p.color}">
+      Plan ${p.id}<span class="tab-label">${esc(t(p,'label'))}</span>
+    </div>`).join('');
+
+  const contents = DATA.plans.map(p => {
+    let inner = '';
+    if (p.yamarecoUrl) {
+      inner += `<a class="link-card" href="${esc(p.yamarecoUrl)}" target="_blank">
+        <span class="lc-icon">🗺</span>
+        <span><span class="lc-title">${lang==='en'?'View Route Plan on Yamareco':'ヤマレコ 登山計画を見る'}</span>
+        <span class="lc-sub">${lang==='en'?'Map · GPS route · Elevation':'地図・GPSルート・標高グラフ'}</span></span>
+        <span class="lc-arrow">↗</span></a>`;
+    }
+    if (p.mapImage) {
+      inner += `<div class="map-wrap"><img src="${esc(p.mapImage)}" alt="map"
+        onerror="this.parentNode.style.display='none'"/>
+        <div class="map-cap"><span>${esc(t(p,'mapCaption'))}</span></div></div>`;
+    }
+    inner += '<div class="day-list">' + p.days.map(renderDay).join('') + '</div>';
+    return `<div class="plan-content section" id="plan-${p.id}">${inner}</div>`;
+  }).join('');
+
+  return `<div class="view" id="view-plan">
+    <div class="alert">⚠️ ${esc(t(DATA.trip,'alert'))}</div>
+    <div class="plan-tabs">${tabs}</div>
+    ${contents}
+  </div>`;
+}
+
+function renderDay(d) {
+  let badgeClass = 'day-badge';
+  if (d.travel || d.type==='travel') badgeClass += ' travel';
+  else if (d.danger) badgeClass += ' danger';
+  else if (d.common) badgeClass += ' common';
+
+  const badgeSub = d.common ? `<br><span style="font-size:9px;font-weight:400;">${lang==='en'?'shared':'共通'}</span>`
+    : (d.danger ? `<br><span style="font-size:9px;font-weight:400;">${lang==='en'?'crux':'核心'}</span>` : '');
+
+  let body = '';
+  if (d.rows && d.rows.length) {
+    body = '<div class="day-body">' + d.rows.map(r => {
+      let cls = 'ir-value';
+      if (r.highlight) cls += ' depart';
+      if (r.danger) cls += ' danger';
+      return `<div class="info-row">
+        <span class="ir-label">${esc(t(r,'label'))}</span>
+        <span class="${cls}">${esc(t(r,'value'))}</span></div>`;
+    }).join('') + '</div>';
+  }
+
+  const headerBg = d.danger ? ' style="background:#fdecea;"' : (d.common ? ' style="background:#f0f4ff;"' : '');
+  const sub = t(d,'subtitle') ? `<div class="day-sub">${esc(t(d,'subtitle'))}</div>` : '';
+
+  return `<div class="day-card">
+    <div class="day-header"${headerBg}>
+      <div class="${badgeClass}">${esc(d.date)}${badgeSub}</div>
+      <div><div class="day-title">${esc(t(d,'title'))}</div>${sub}</div>
+    </div>${body}
+  </div>`;
+}
+
+function renderBranchView() {
+  const dec = DATA.decision;
+  const stages = dec.stages.map(s => {
+    const branches = s.branches.map(b => `
+      <div class="branch-row">
+        <div class="branch-dot" style="background:${esc(b.dotColor)}">${esc(b.dot)}</div>
+        <div><div class="branch-plan" style="color:${esc(b.dotColor)}">${esc(t(b,'plan'))}</div>
+        <div class="branch-cond">${esc(t(b,'cond'))}</div></div>
+      </div>`).join('');
+    return `
+      <div class="section-label" style="margin-top:4px; font-size:10px; color:${esc(s.hubColor)};">${esc(t(s,'label'))}</div>
+      <div class="decision-card">
+        <div class="decision-hub" style="background:${esc(s.hubColor)}">
+          <div class="dh-title">${esc(t(s,'hubTitle'))}</div>
+          <div class="dh-sub">${esc(t(s,'hubSub'))}</div>
+        </div>
+        <div class="decision-arrow">▼</div>
+        ${branches}
+      </div>`;
+  }).join('');
+  return `<div class="view" id="view-branch"><div class="section">
+    <div class="section-label">${esc(t(dec,'title'))}</div>${stages}
+  </div></div>`;
+}
+
+function renderNotesView() {
+  const cards = DATA.notes.map((n,i) => `
+    <div class="note-card">
+      <div class="note-header" onclick="toggleNote(this)">
+        <span class="note-tag" style="background:${esc(n.tagColor)}">${esc(t(n,'tag'))}</span>
+        <span class="note-title">${esc(t(n,'title'))}</span>
+        <span class="note-chevron">▼</span>
+      </div>
+      <div class="note-body">
+        <ul>${n.items.map(it=>`<li>${esc(tField(it))}</li>`).join('')}</ul>
+      </div>
+    </div>`).join('');
+  return `<div class="view" id="view-notes"><div class="section">
+    <div class="section-label">${lang==='en'?'Tap to expand':'タップで展開'}</div>${cards}
+  </div></div>`;
+}
+
+function renderGearView() {
+  const cards = DATA.gear.map(g => `
+    <div class="gear-card">
+      <div class="gear-header">${esc(t(g,'category'))}</div>
+      ${g.items.map(it=>`
+        <div class="gear-item">
+          <div><div class="gear-name">${esc(t(it,'name'))}</div>
+          <div class="gear-note">${esc(t(it,'note'))}</div></div>
+          <span class="badge badge-${it.badgeType}">${esc(t(it,'badge'))}</span>
+        </div>`).join('')}
+    </div>`).join('');
+  return `<div class="view" id="view-gear"><div class="section">${cards}</div></div>`;
+}
+
+function renderEmergencyView() {
+  const e = DATA.emergency;
+  const services = `<div class="emg-card">
+    <div class="emg-header" style="background:var(--danger);">${lang==='en'?'🆘 Emergency Contacts':'🆘 緊急連絡先'}</div>
+    ${e.services.map(s=>`<div class="emg-item">
+      <span class="emg-label">${esc(t(s,'label'))}</span>
+      <span class="emg-value"><a href="tel:${esc(s.tel)}" style="color:var(--danger);">${esc(s.value)}</a></span>
+    </div>`).join('')}
+  </div>`;
+
+  const huts = `<div class="emg-card">
+    <div class="emg-header" style="background:var(--slate);">${lang==='en'?'🏠 Mountain Huts':'🏠 山小屋連絡先'}</div>
+    ${e.huts.map(h=>`<div class="emg-item" style="flex-direction:column; gap:4px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+        <span class="emg-label">${esc(t(h,'label'))}</span>
+        <span class="emg-value"><a href="tel:${esc(h.tel)}" style="color:var(--peak);">${esc(h.value)}</a></span>
+      </div>
+      ${h.url?`<a class="emg-link" href="${esc(h.url)}" target="_blank">🌐 ${lang==='en'?'Official Website':'公式サイト'} ↗</a>`:''}
+    </div>`).join('')}
+  </div>`;
+
+  const links = e.links && e.links.length ? `<div class="emg-card">
+    <div class="emg-header" style="background:var(--peak);">${lang==='en'?'🔗 Useful Links':'🔗 参考リンク'}</div>
+    ${e.links.map(l=>`<div class="emg-item" style="flex-direction:column; gap:4px;">
+      <div style="font-size:13px; font-weight:600; color:var(--ink);">${esc(t(l,'title'))}</div>
+      <a class="emg-link" href="${esc(l.url)}" target="_blank">${esc(l.linkText)}</a>
+    </div>`).join('')}
+  </div>` : '';
+
+  const prep = e.prep && e.prep.length ? `<div class="note-card">
+    <div class="note-header" onclick="toggleNote(this)">
+      <span class="note-tag" style="background:var(--slate);">${lang==='en'?'PREP':'事前準備'}</span>
+      <span class="note-title">${lang==='en'?'Registration & Insurance':'登山届・保険について'}</span>
+      <span class="note-chevron">▼</span>
+    </div>
+    <div class="note-body"><ul>${e.prep.map(p=>`<li>${esc(tField(p))}</li>`).join('')}</ul></div>
+  </div>` : '';
+
+  return `<div class="view" id="view-emg"><div class="section">${services}${huts}${links}${prep}</div></div>`;
+}
+
+// ─── インタラクション ───
+function showView(id) {
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('view-'+id).classList.add('active');
+  document.getElementById('nav-'+id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function showPlan(id) {
+  currentPlan = id;
+  DATA.plans.forEach(p=>{
+    document.getElementById('plan-'+p.id).classList.remove('visible');
+    const tab = document.getElementById('tab-'+p.id);
+    tab.classList.remove('active');
+    tab.style.background=''; tab.style.color=''; tab.style.borderColor='#dce3ed';
+  });
+  document.getElementById('plan-'+id).classList.add('visible');
+  const p = DATA.plans.find(x=>x.id===id);
+  const tab = document.getElementById('tab-'+id);
+  tab.classList.add('active');
+  tab.style.background=p.color; tab.style.color='#fff'; tab.style.borderColor=p.color;
+}
+function toggleNote(h) {
+  h.classList.toggle('open');
+  h.nextElementSibling.classList.toggle('open');
+}
+function setLang(l) {
+  lang = l;
+  render();
+}
+
+loadData();
+</script>
+</body>
+</html>

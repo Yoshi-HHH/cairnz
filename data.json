@@ -1,0 +1,348 @@
+{
+  "meta": {
+    "schemaVersion": "0.1",
+    "appName": "Cairnz"
+  },
+  "trip": {
+    "title": "北アルプス縦走",
+    "subtitle": "双六岳・槍ヶ岳・大キレット・北穂高岳",
+    "dates": "7/30 – 8/3",
+    "members": 2,
+    "style": "テント泊",
+    "level": "上級",
+    "crux": "大キレット",
+    "alert": "大キレットを含む上級ルートです。天候・体調に応じてプランを切り替えてください。",
+    "alert_en": "This is an advanced route including Daikiretto. Switch plans based on weather and physical condition."
+  },
+  "plans": [
+    {
+      "id": "A",
+      "color": "#2c5f8a",
+      "label": "大キレット縦走",
+      "label_en": "Full Traverse",
+      "yamarecoUrl": "https://www.yamareco.com/modules/yr_plan/code-QlZEWxfxSmef9ZeE-YD3GA",
+      "mapImage": "maps/map_plan_a.png",
+      "mapCaption": "プランA ルート全体図（ヤマレコより）",
+      "mapCaption_en": "Plan A Full Route Map (via Yamareco)",
+      "days": [
+        {
+          "date": "7/30",
+          "type": "travel",
+          "title": "移動日",
+          "title_en": "Travel Day",
+          "subtitle": "わさび平小屋 泊（小屋）",
+          "subtitle_en": "Overnight at Wasabidaira Hut",
+          "rows": [
+            { "label": "移動手段", "label_en": "Transport", "value": "マイカー → 沢渡駐車場 → バス", "value_en": "Car → Sawando parking → Bus" },
+            { "label": "バス", "label_en": "Bus", "value": "さわんど14:10発 → 平湯乗換 → 新穂高温泉着 約16:00", "value_en": "Sawando 2:10 PM → transfer Hirayu → Shinhodaka ~4:00 PM" },
+            { "label": "徒歩", "label_en": "Walk", "value": "新穂高 → わさび平小屋（約1.5時間）→ 17:30頃着", "value_en": "Shinhodaka → Wasabidaira Hut (~1.5h) → arrive ~5:30 PM" },
+            { "label": "宿泊", "label_en": "Stay", "value": "わさび平小屋（小屋泊・翌日に備えて体力温存）", "value_en": "Wasabidaira Hut — lodge stay to conserve energy" }
+          ]
+        },
+        {
+          "date": "7/31",
+          "common": true,
+          "title": "新穂高 → 双六小屋",
+          "title_en": "Shinhodaka → Sugoroku Hut",
+          "subtitle": "テント泊",
+          "subtitle_en": "Tent camp",
+          "rows": [
+            { "label": "通過点", "label_en": "Via", "value": "鏡平山荘、弓折乗越", "value_en": "Kagamidaira Hut, Yumizori Pass" },
+            { "label": "CT", "label_en": "CT", "value": "7.0h", "value_en": "7.0h" },
+            { "label": "出発", "label_en": "Depart", "value": "5:00 AM", "value_en": "5:00 AM", "highlight": true },
+            { "label": "到着", "label_en": "Arrive", "value": "13:00頃", "value_en": "~1:00 PM" }
+          ]
+        },
+        {
+          "date": "8/1",
+          "common": true,
+          "title": "双六小屋 → 槍ヶ岳 → 南岳小屋",
+          "title_en": "Sugoroku → Yarigatake → Minamidake",
+          "subtitle": "テント泊",
+          "subtitle_en": "Tent camp",
+          "rows": [
+            { "label": "通過点", "label_en": "Via", "value": "双六岳、西鎌尾根、槍ヶ岳（3,180m）", "value_en": "Mt. Sugoroku, Nishikama Ridge, Yarigatake (3,180m)" },
+            { "label": "CT", "label_en": "CT", "value": "9.0h", "value_en": "9.0h" },
+            { "label": "出発", "label_en": "Depart", "value": "5:00 AM", "value_en": "5:00 AM", "highlight": true },
+            { "label": "到着", "label_en": "Arrive", "value": "15:00頃", "value_en": "~3:00 PM" }
+          ]
+        },
+        {
+          "date": "8/2",
+          "danger": true,
+          "title": "南岳小屋 → 大キレット → 涸沢",
+          "title_en": "Minamidake → Daikiretto → Karasawa",
+          "subtitle": "核心日・テント泊",
+          "subtitle_en": "Crux day · Tent camp",
+          "rows": [
+            { "label": "通過点", "label_en": "Via", "value": "大キレット、長谷川ピーク、北穂高岳", "value_en": "Daikiretto, Hasegawa Peak, Kitahodaka" },
+            { "label": "CT", "label_en": "CT", "value": "7.0h", "value_en": "7.0h" },
+            { "label": "出発", "label_en": "Depart", "value": "5:00 AM ⚠️", "value_en": "5:00 AM ⚠️", "highlight": true },
+            { "label": "到着", "label_en": "Arrive", "value": "13:00頃", "value_en": "~1:00 PM" }
+          ]
+        },
+        {
+          "date": "8/3",
+          "title": "涸沢 → 上高地",
+          "title_en": "Karasawa → Kamikochi",
+          "subtitle": "下山・解散",
+          "subtitle_en": "Descend / Finish",
+          "rows": [
+            { "label": "通過点", "label_en": "Via", "value": "本谷橋、横尾、徳沢", "value_en": "Hontatebashi, Yokoo, Tokusawa" },
+            { "label": "CT", "label_en": "CT", "value": "4.5h", "value_en": "4.5h" },
+            { "label": "出発", "label_en": "Depart", "value": "6:00 AM", "value_en": "6:00 AM", "highlight": true },
+            { "label": "到着", "label_en": "Arrive", "value": "11:30頃", "value_en": "~11:30 AM" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "color": "#27774a",
+      "label": "天狗原→槍沢",
+      "label_en": "Tenguhara Route",
+      "yamarecoUrl": "https://www.yamareco.com/modules/yr_plan/code-foKFBVBGSyKRZKoVc9h3Hg",
+      "mapImage": "maps/map_plan_b.png",
+      "mapCaption": "プランB ルート図（ヤマレコより）",
+      "mapCaption_en": "Plan B Route Map (via Yamareco)",
+      "days": [
+        {
+          "date": "7/30–8/1",
+          "common": true,
+          "title": "プランAと同じ（わさび平小屋〜南岳小屋まで共通）",
+          "title_en": "Same as Plan A through Minamidake Hut",
+          "rows": []
+        },
+        {
+          "date": "8/2",
+          "title": "南岳小屋 → 天狗原 → 槍沢ロッヂ → 徳沢",
+          "title_en": "Minamidake → Tenguhara → Yarisawa Lodge → Tokusawa",
+          "subtitle": "テント泊",
+          "subtitle_en": "Tent camp",
+          "rows": [
+            { "label": "通過点", "label_en": "Via", "value": "天狗原、天狗池、槍沢ロッヂ、横尾", "value_en": "Tenguhara, Tengu Pond, Yarisawa Lodge, Yokoo" },
+            { "label": "CT", "label_en": "CT", "value": "7.0h", "value_en": "7.0h" },
+            { "label": "出発", "label_en": "Depart", "value": "6:00 AM", "value_en": "6:00 AM", "highlight": true },
+            { "label": "到着", "label_en": "Arrive", "value": "14:00頃", "value_en": "~2:00 PM" }
+          ]
+        },
+        {
+          "date": "8/3",
+          "title": "徳沢 → 上高地",
+          "title_en": "Tokusawa → Kamikochi",
+          "subtitle": "下山・解散",
+          "subtitle_en": "Descend / Finish",
+          "rows": [
+            { "label": "通過点", "label_en": "Via", "value": "明神", "value_en": "Myojin" },
+            { "label": "CT", "label_en": "CT", "value": "1.5h", "value_en": "1.5h" },
+            { "label": "出発", "label_en": "Depart", "value": "8:00 AM", "value_en": "8:00 AM", "highlight": true },
+            { "label": "到着", "label_en": "Arrive", "value": "9:30頃", "value_en": "~9:30 AM" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "color": "#b07d10",
+      "label": "槍沢・上高地へ",
+      "label_en": "Yarisawa → Kamikochi",
+      "yamarecoUrl": "https://www.yamareco.com/modules/yr_plan/code-yQaZMye5RG-PdX48SUXtKw",
+      "mapImage": "maps/map_plan_c.png",
+      "mapCaption": "プランC ルート図（ヤマレコより）",
+      "mapCaption_en": "Plan C Route Map (via Yamareco)",
+      "days": [
+        {
+          "date": "7/30–7/31",
+          "common": true,
+          "title": "プランAと同じ（わさび平小屋〜双六小屋まで共通）",
+          "title_en": "Same as Plan A through Sugoroku Hut",
+          "rows": []
+        },
+        {
+          "date": "8/1",
+          "danger": true,
+          "title": "双六小屋 → 槍ヶ岳山荘 or 殺生ヒュッテ",
+          "title_en": "Sugoroku → Yarigatake Hut or Sessho Hut",
+          "subtitle": "テント or 小屋泊（⚠️ 槍ヶ岳到着時点で判断）",
+          "subtitle_en": "Tent or lodge (⚠️ Decide on arrival at Yarigatake)",
+          "rows": [
+            { "label": "通過点", "label_en": "Via", "value": "双六岳、西鎌尾根、槍ヶ岳（3,180m）", "value_en": "Mt. Sugoroku, Nishikama Ridge, Yarigatake (3,180m)" },
+            { "label": "判断基準", "label_en": "Decision", "value": "13時以降着 / 穂先で消耗 / どちらかが南岳進行に不安", "value_en": "Arrive after 1 PM / Exhausted by summit / Either unsure", "danger": true },
+            { "label": "CT", "label_en": "CT", "value": "7.0h", "value_en": "7.0h" },
+            { "label": "出発", "label_en": "Depart", "value": "5:00 AM", "value_en": "5:00 AM", "highlight": true },
+            { "label": "到着", "label_en": "Arrive", "value": "13:00頃", "value_en": "~1:00 PM" }
+          ]
+        },
+        {
+          "date": "8/2",
+          "title": "槍ヶ岳山荘 → 殺生ヒュッテ → 槍沢ロッヂ → 徳沢",
+          "title_en": "Yarigatake Hut → Sessho → Yarisawa Lodge → Tokusawa",
+          "subtitle": "テント泊",
+          "subtitle_en": "Tent camp",
+          "rows": [
+            { "label": "通過点", "label_en": "Via", "value": "殺生ヒュッテ、槍沢ロッヂ、横尾", "value_en": "Sessho Hut, Yarisawa Lodge, Yokoo" },
+            { "label": "CT", "label_en": "CT", "value": "6.0h", "value_en": "6.0h" },
+            { "label": "出発", "label_en": "Depart", "value": "7:00 AM", "value_en": "7:00 AM", "highlight": true },
+            { "label": "到着", "label_en": "Arrive", "value": "14:00頃", "value_en": "~2:00 PM" }
+          ]
+        },
+        {
+          "date": "8/3",
+          "title": "徳沢 → 上高地",
+          "title_en": "Tokusawa → Kamikochi",
+          "subtitle": "下山・解散",
+          "subtitle_en": "Descend / Finish",
+          "rows": [
+            { "label": "通過点", "label_en": "Via", "value": "明神", "value_en": "Myojin" },
+            { "label": "CT", "label_en": "CT", "value": "1.5h", "value_en": "1.5h" },
+            { "label": "出発", "label_en": "Depart", "value": "8:00 AM", "value_en": "8:00 AM", "highlight": true },
+            { "label": "到着", "label_en": "Arrive", "value": "9:30頃", "value_en": "~9:30 AM" }
+          ]
+        }
+      ]
+    }
+  ],
+  "decision": {
+    "title": "2段階の判断フロー",
+    "title_en": "Two-Stage Decision Flow",
+    "stages": [
+      {
+        "label": "【第1判断】8/1 槍ヶ岳到着時点",
+        "label_en": "[DECISION 1] Aug 1 — On arriving at Yarigatake",
+        "hubColor": "#b07d10",
+        "hubTitle": "槍ヶ岳到着時点でチェック",
+        "hubTitle_en": "Check on arrival at Yarigatake",
+        "hubSub": "7/31 新穂高→双六 ／ 8/1 双六→西鎌尾根→槍ヶ岳",
+        "hubSub_en": "Jul 31 Shinhodaka→Sugoroku ／ Aug 1 Sugoroku→Nishikama→Yarigatake",
+        "branches": [
+          { "dot": "→", "dotColor": "#555", "plan": "南岳小屋へ進む（第2判断へ）", "plan_en": "Continue to Minamidake Hut → Decision 2", "cond": "槍到着13時前 ＋ 2人とも余裕あり ＋ 穂先登頂後も体力残っている", "cond_en": "Arrive before 1 PM + Both feel fine + Still energized after summit" },
+          { "dot": "C", "dotColor": "#b07d10", "plan": "プランC ─ 槍ヶ岳山荘 or 殺生ヒュッテ泊", "plan_en": "Plan C ─ Stay at Yarigatake or Sessho Hut", "cond": "13時以降着 ／ 穂先で予想以上に消耗 ／ どちらかが南岳進行に不安", "cond_en": "Arrive after 1 PM / Exhausted / Either unsure about continuing" }
+        ]
+      },
+      {
+        "label": "【第2判断】8/1夜・南岳小屋にて",
+        "label_en": "[DECISION 2] Aug 1 evening — At Minamidake Hut",
+        "hubColor": "#2c5f8a",
+        "hubTitle": "南岳小屋で翌日のプランを決定",
+        "hubTitle_en": "Decide next day's plan at Minamidake Hut",
+        "hubSub": "前夜の天気予報 ＋ 2人の疲労感で判断",
+        "hubSub_en": "Base on weather forecast + how both feel",
+        "branches": [
+          { "dot": "A", "dotColor": "#2c5f8a", "plan": "プランA ─ 大キレット縦走", "plan_en": "Plan A ─ Daikiretto Traverse", "cond": "2人とも体力十分 ＋ 翌朝の天気予報が晴れ", "cond_en": "Both feel strong + Clear forecast for the morning" },
+          { "dot": "B", "dotColor": "#27774a", "plan": "プランB ─ 天狗原→槍沢下山", "plan_en": "Plan B ─ Tenguhara → Yarisawa descent", "cond": "体力は十分 ＋ 天候不安定または不良予報", "cond_en": "Both feel fine + Unstable or poor weather forecast" },
+          { "dot": "!", "dotColor": "#c0392b", "plan": "即プランB へ", "plan_en": "Switch immediately to Plan B", "cond": "天候不良 ＋ 疲労あり ／ どちらかが体調不良", "cond_en": "Poor weather + Fatigue / Either person unwell" }
+        ]
+      }
+    ]
+  },
+  "notes": [
+    {
+      "tag": "全プラン共通",
+      "tag_en": "ALL PLANS",
+      "tagColor": "#3d4f6e",
+      "title": "基本的な注意事項",
+      "title_en": "General Precautions",
+      "items": [
+        { "ja": "8月の北アルプスは15時頃から雷雨リスクが高まる。稜線上の行動は14時までに終えること。", "en": "Thunderstorms often develop by 3 PM in August. Complete ridge-line travel by 2 PM." },
+        { "ja": "各テント場は先着順。双六小屋・涸沢は特に混雑するため、14時前到着を目標に。", "en": "All campsites are first-come. Sugoroku and Karasawa fill up quickly — target arrival before 2 PM." },
+        { "ja": "天気予報は「ヤマテン」または「tenki.jp 登山天気」で前夜と当日朝に必ず確認。", "en": "Check Yamaten or tenki.jp Mountain Weather the evening before and morning of each day." },
+        { "ja": "西鎌尾根〜南岳間は水場がほぼない。双六小屋で水2L以上を確保すること。", "en": "Minimal water between Sugoroku and Minamidake. Carry 2L+ from Sugoroku Hut." }
+      ]
+    },
+    {
+      "tag": "プランA 核心部",
+      "tag_en": "PLAN A CRUX",
+      "tagColor": "#c0392b",
+      "title": "大キレット通過の注意",
+      "title_en": "Daikiretto Safety Notes",
+      "items": [
+        { "ja": "南岳小屋を5:00に出発し、大キレットを午前中に通過完了することが最優先。", "en": "Depart Minamidake at 5:00 AM sharp and finish the traverse before noon — top priority." },
+        { "ja": "長谷川ピーク前後のナイフリッジはザックの重心に注意。2人の間隔を十分に開けて通過。", "en": "Near Hasegawa Peak, mind pack weight distribution. Keep spacing between hikers." },
+        { "ja": "濡れた岩は難易度が大幅に上昇。前夜の予報で少しでも雨の可能性があればプランBへ。", "en": "Wet rock greatly increases difficulty. Switch to Plan B if any rain is forecast." },
+        { "ja": "鎖・ハシゴ通過時は落石に特に注意。上下方向の間隔を意識する。", "en": "Watch for rockfall on chains and ladders. Maintain vertical spacing." }
+      ]
+    },
+    {
+      "tag": "プランB",
+      "tag_en": "PLAN B",
+      "tagColor": "#27774a",
+      "title": "天狗原経由・槍沢下山の注意",
+      "title_en": "Tenguhara Route Notes",
+      "items": [
+        { "ja": "南岳から天狗原への下降は一般登山道だが急傾斜。朝の体力があるうちに慎重に通過する。", "en": "The descent from Minamidake to Tenguhara is a standard but steep trail. Tackle it while fresh." },
+        { "ja": "槍ヶ岳山荘への登り返しがなく、前進しながら下山できる。心理的に大キレットを諦めやすい。", "en": "No re-ascent needed — you descend while moving forward. Psychologically easier than turning back." },
+        { "ja": "天狗池付近は晴れていれば槍ヶ岳の逆さ槍が見られる絶景ポイント。", "en": "On clear days, Tengu Pond offers a stunning reflection of Yarigatake." },
+        { "ja": "徳沢テント場は梓川沿いの快適な環境。最終日をのんびり過ごせる。", "en": "Tokusawa campsite along the Azusa River is a relaxing way to wind down." }
+      ]
+    },
+    {
+      "tag": "プランC",
+      "tag_en": "PLAN C",
+      "tagColor": "#b07d10",
+      "title": "槍ヶ岳山荘泊・槍沢下山の注意",
+      "title_en": "Yarigatake Hut Stay Notes",
+      "items": [
+        { "ja": "槍ヶ岳山荘のテント場は人気で狭く、満員の場合は殺生ヒュッテへ降りる。殺生ヒュッテは比較的余裕がある。", "en": "The Yarigatake Hut campsite is small and fills fast. If full, descend to Sessho Hut." },
+        { "ja": "翌8/2は槍沢をゆっくり下るだけ。前日の消耗を翌日に持ち越さない余裕ある行動ができる。", "en": "Aug 2 is an easy descent down Yarisawa — plenty of time to recover." },
+        { "ja": "徳沢テント場泊で8/3は最短1.5時間で上高地へ。帰路のバス・タクシー時間に余裕が生まれる。", "en": "Stay at Tokusawa, reach Kamikochi in 1.5h on Aug 3 — easy connection home." }
+      ]
+    }
+  ],
+  "gear": [
+    {
+      "category": "🪨 岩場・安全装備",
+      "category_en": "🪨 Scrambling & Safety",
+      "items": [
+        { "name": "ヘルメット", "name_en": "Climbing Helmet", "note": "大キレット通過時は着用必須。落石・スリップ時の頭部保護。", "note_en": "Must be worn on Daikiretto. Protects against rockfall and slips.", "badge": "必携", "badge_en": "Essential", "badgeType": "req" },
+        { "name": "グリップ系グローブ（薄手）", "name_en": "Thin Grip Gloves", "note": "鎖場・岩場でのグリップ向上と怪我防止。", "note_en": "Better grip on chains and rock; prevents hand injuries.", "badge": "必携", "badge_en": "Essential", "badgeType": "req" }
+      ]
+    },
+    {
+      "category": "🌧 雨天・防寒装備",
+      "category_en": "🌧 Weather & Cold",
+      "items": [
+        { "name": "レインウェア上下セパレート", "name_en": "Rain Jacket & Pants", "note": "ゴアテックス等の防水透湿素材。ポンチョは岩場で危険なので不可。", "note_en": "Gore-Tex or equivalent. No ponchos — dangerous on rock.", "badge": "必携", "badge_en": "Essential", "badgeType": "req" },
+        { "name": "防寒着（フリース or ダウン）", "name_en": "Insulating Layer", "note": "南岳小屋（3,032m）は朝晩10℃前後まで冷える。", "note_en": "Minamidake Hut (3,032m) drops to ~10°C at night.", "badge": "必携", "badge_en": "Essential", "badgeType": "req" }
+      ]
+    },
+    {
+      "category": "🎒 ザック・テント・寝具",
+      "category_en": "🎒 Pack, Shelter & Sleep",
+      "items": [
+        { "name": "ザック 45〜50L", "name_en": "Backpack 45–50L", "note": "大キレットでは重心管理が重要。50L以下が理想。", "note_en": "Center of gravity matters on Daikiretto. Under 50L ideal.", "badge": "推奨", "badge_en": "Recommended", "badgeType": "rec" },
+        { "name": "テント（自立式・軽量）", "name_en": "Freestanding Tent", "note": "非自立式はペグが打てない岩稜帯のテント場で苦労する。", "note_en": "Non-freestanding tents struggle on rocky campsites.", "badge": "必携", "badge_en": "Essential", "badgeType": "req" },
+        { "name": "シュラフ（快適温度5〜10℃）", "name_en": "Sleeping Bag (5–10°C)", "note": "高標高テント泊に対応したもの。", "note_en": "Suitable for high-altitude tent camping.", "badge": "必携", "badge_en": "Essential", "badgeType": "req" },
+        { "name": "スリーピングマット", "name_en": "Sleeping Pad", "note": "岩稜帯のテント場は地面が硬く凹凸がある。断熱性のあるものを。", "note_en": "Rocky campsites are hard and uneven. Choose an insulating pad.", "badge": "必携", "badge_en": "Essential", "badgeType": "req" }
+      ]
+    },
+    {
+      "category": "💊 サポート・その他",
+      "category_en": "💊 Support & Utilities",
+      "items": [
+        { "name": "モバイルバッテリー（5,000mAh以上）", "name_en": "Power Bank (5,000mAh+)", "note": "ヤマテン・GPS・撮影を考慮。", "note_en": "For Yamaten, GPS, and photography.", "badge": "推奨", "badge_en": "Recommended", "badgeType": "rec" },
+        { "name": "行動食（多め）", "name_en": "Extra Snacks", "note": "特に8/1・8/2は多めに。疲労時の判断力維持に直結する。", "note_en": "Extra for Aug 1 and 2. Staying fueled maintains judgment.", "badge": "必携", "badge_en": "Essential", "badgeType": "req" }
+      ]
+    }
+  ],
+  "emergency": {
+    "services": [
+      { "label": "警察・山岳救助", "label_en": "Police", "value": "110", "tel": "110" },
+      { "label": "長野県警山岳", "label_en": "Nagano Police", "value": "0263-35-0110", "tel": "0263350110" },
+      { "label": "岐阜県警", "label_en": "Gifu Police", "value": "058-271-2424", "tel": "0582712424" }
+    ],
+    "huts": [
+      { "label": "双六小屋", "label_en": "Sugoroku Hut", "value": "090-7869-0545", "tel": "09078690545", "url": "https://www.sugorokugoya.com/sugoroku/" },
+      { "label": "槍ヶ岳山荘", "label_en": "Yarigatake Hut", "value": "0263-35-7200", "tel": "0263357200", "url": "https://www.yarigatake.co.jp/yarigatake/" },
+      { "label": "南岳小屋", "label_en": "Minamidake Hut", "value": "090-2204-1917", "tel": "09022041917", "url": "https://www.yarigatake.co.jp/minamidake/" },
+      { "label": "北穂高小屋", "label_en": "Kitahodaka Hut", "value": "090-1422-8886", "tel": "09014228886", "url": "https://www.kitaho.co.jp/" }
+    ],
+    "links": [
+      { "title": "Japan Travel — 槍ヶ岳ガイド（英語）", "title_en": "Japan Travel — Mt. Yarigatake Guide", "url": "https://www.japan.travel/en/sports/hiking/courses/mt-yarigatake/", "linkText": "🌏 japan.travel — Yarigatake Hiking Course ↗" }
+    ],
+    "prep": [
+      { "ja": "登山届はCompass（コンパス）から事前に提出すること。", "en": "Submit a hiking registration via Compass before departure." },
+      { "ja": "山岳保険への加入を強く推奨。ヘリコプター救助費用は数十万円になることがある。", "en": "Mountain rescue insurance strongly recommended. Helicopter rescue can cost hundreds of thousands of yen." },
+      { "ja": "Garmin inReachなどの衛星通信デバイスがあれば携行すること。", "en": "Bring a satellite communicator (e.g. Garmin inReach) if available." }
+    ]
+  }
+}
