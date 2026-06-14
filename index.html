@@ -167,6 +167,7 @@
 let DATA = null;
 let lang = 'ja';
 let currentPlan = null;
+let currentView = 'plan';
 
 // ─── 多言語ヘルパー ───
 function t(obj, key) {
@@ -208,7 +209,7 @@ function render() {
     renderNotesView() +
     renderGearView() +
     renderEmergencyView();
-  showView('plan');
+  showView(currentView);
   showPlan(currentPlan);
 }
 
@@ -406,6 +407,7 @@ function renderEmergencyView() {
 
 // ─── インタラクション ───
 function showView(id) {
+  currentView = id;
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('view-'+id).classList.add('active');
